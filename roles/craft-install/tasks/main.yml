@@ -1,0 +1,4 @@
+---
+- include: directories.yml
+  tags: craft-install-directories
+

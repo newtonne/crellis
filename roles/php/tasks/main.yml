@@ -63,5 +63,5 @@
 - name: php-fpm configuration file
   template:
     src: php-fpm.conf.j2
-    dest: /etc/php/7.0/fpm/pool.d/wordpress.conf
+    dest: /etc/php/7.0/fpm/pool.d/craft.conf
   notify: reload php-fpm

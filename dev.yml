@@ -1,5 +1,5 @@
 ---
-- name: "WordPress Server: Install LEMP Stack with PHP 7.0 and MariaDB MySQL"
+- name: "Craft Server: Install LEMP Stack with PHP 7.0 and MariaDB MySQL"
   hosts: web:&development
   become: yes
   remote_user: vagrant
@@ -17,7 +17,5 @@
     - { role: memcached, tags: [memcached] }
     - { role: nginx, tags: [nginx] }
     - { role: logrotate, tags: [logrotate] }
-    - { role: composer, tags: [composer] }
-    - { role: wp-cli, tags: [wp-cli] }
-    - { role: wordpress-setup, tags: [wordpress, wordpress-setup] }
-    - { role: wordpress-install, tags: [wordpress, wordpress-install] }
+    - { role: craft-setup, tags: [craft, craft-setup] }
+    - { role: craft-install, tags: [craft, craft-install] }

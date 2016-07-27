@@ -16,7 +16,7 @@ php_upload_max_filesize: 25M
 php_track_errors: 'Off'
 php_default_timezone: '{{ default_timezone }}'
 
-php_opcache_enable: 1
+php_opcache_enable: 0
 php_opcache_enable_cli: 1
 php_opcache_fast_shutdown: 1
 php_opcache_interned_strings_buffer: 8
