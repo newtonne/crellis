@@ -1,0 +1,9 @@
+craft_env_defaults:
+  db_host: localhost
+  db_name: "{{ item.key | underscore }}_{{ env }}"
+  db_user: "{{ item.key | underscore }}"
+
+site_env: "{{ craft_env_defaults | combine(item.value.env | default({}), vault_craft_sites[item.key].env) }}"
+site_hosts_canonical: "{{ item.value.site_hosts | map(attribute='canonical') | list }}"
+site_hosts_redirects: "{{ item.value.site_hosts | selectattr('redirects', 'defined') | sum(attribute='redirects', start=[]) | list }}"
+site_hosts: "{{ site_hosts_canonical | union(site_hosts_redirects) }}"
