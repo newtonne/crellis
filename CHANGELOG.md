@@ -1,5 +1,12 @@
 ### HEAD
-* Require explicit redirects and drop www_redirect ([#622](https://github.com/roots/trellis/pull/622))
+* Fix #639 - WP 4.6 compatibility: update WP-CLI to 0.24.1 ([#640](https://github.com/roots/trellis/pull/640))
+
+### 0.9.8: August 14th, 2016
+* Ansible 2.1 compatibility fixes ([#631](https://github.com/roots/trellis/pull/631))
+* [BREAKING] Upgrade Ubuntu from 14.04 Trusty to 16.04 Xenial ([#626](https://github.com/roots/trellis/pull/626))
+* [BREAKING] Add `vault_users` for easier password management ([#614](https://github.com/roots/trellis/pull/614))
+* Fix #581 - Use WP-CLI to run WP cron ([#583](https://github.com/roots/trellis/pull/583))
+* [BREAKING] Require explicit redirects and drop `www_redirect` ([#622](https://github.com/roots/trellis/pull/622))
 * Fix #612 - Bump nginx_fastcgi_buffer_size to `8k` ([#620](https://github.com/roots/trellis/pull/620))
 * Setup permalink structure for multisite installs too ([#617](https://github.com/roots/trellis/pull/617))
 * Fix `wp_home` option in Multisite after install in development ([#616](https://github.com/roots/trellis/pull/616))

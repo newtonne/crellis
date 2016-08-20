@@ -12,7 +12,7 @@ Ansible playbooks for setting up a LEMP stack for Craft. This is almost a direct
 
 Trellis will configure a server with the following and more:
 
-* Ubuntu 14.04 Trusty LTS
+* Ubuntu 16.04 Xenial LTS
 * Nginx (with optional FastCGI micro-caching)
 * PHP 7.0
 * MariaDB (a drop-in MySQL replacement)
@@ -31,7 +31,7 @@ Make sure all dependencies have been installed before moving on:
 
 * [Ansible](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip) 2.0.2
 * [Virtualbox](https://www.virtualbox.org/wiki/Downloads) >= 4.3.10
-* [Vagrant](https://releases.hashicorp.com/vagrant/1.8.1/) 1.8.1
+* [Vagrant](https://www.vagrantup.com/downloads.html) >= 1.8.5
 * [vagrant-bindfs](https://github.com/gael-ian/vagrant-bindfs#installation) >= 0.3.1 (Windows users may skip this)
 * [vagrant-hostmanager](https://github.com/smdahlen/vagrant-hostmanager#installation)
 
@@ -68,7 +68,7 @@ Trellis documentation is available at [https://roots.io/trellis/docs/](https://r
 
 ## Remote server setup (staging/production)
 
-A base Ubuntu 14.04 server is required for setting up remote servers.
+A base Ubuntu 16.04 server is required for setting up remote servers.
 
 1. Configure your Craft sites in `group_vars/<environment>/craft_sites.yml` and in `group_vars/<environment>/vault.yml` (see the [Vault docs](https://roots.io/trellis/docs/vault/) for how to encrypt files containing passwords)
 2. Add your server IP/hostnames to `hosts/<environment>`
