@@ -18,4 +18,4 @@ nginx_cache_key_storage_size: 10m
 nginx_cache_size: 250m
 nginx_cache_inactive: 1h
 nginx_skip_cache_uri: /admin/
-nginx_skip_cache_cookie: .+username$|CRAFT_CSRF_TOKEN
+nginx_skip_cache_cookie: .+username$
