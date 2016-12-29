@@ -2,5 +2,4 @@
 - name: Reload php-fpm
   shell: sudo service php7.0-fpm reload
   args:
-    chdir: "{{ deploy_helper.new_release_path }}"
     warn: false
