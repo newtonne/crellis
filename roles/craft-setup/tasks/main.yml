@@ -36,7 +36,7 @@
   notify: reload php-fpm
 
 - include: nginx-includes.yml
-  tags: [craft-setup-nginx-includes, craft-setup-nginx]
+  tags: [nginx-includes, craft-setup-nginx]
 
 - include: nginx.yml
   tags: craft-setup-nginx

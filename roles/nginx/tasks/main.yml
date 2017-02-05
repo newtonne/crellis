@@ -39,9 +39,10 @@
 
 - name: Create nginx.conf
   template:
-    src: nginx.conf.j2
+    src: "{{ nginx_conf }}"
     dest: "{{ nginx_path }}/nginx.conf"
   notify: reload nginx
+  tags: nginx-includes
 
 - name: Disable default server
   file:
@@ -54,8 +55,3 @@
   args:
     creates: "{{ nginx_path }}/sites-enabled/no-default.conf"
   notify: reload nginx
-
-- name: Create base Craft config
-  template:
-    src: craft.conf.j2
-    dest: "{{ nginx_path }}/craft.conf"

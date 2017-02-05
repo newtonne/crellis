@@ -18,6 +18,7 @@
       db_name: "{{ site | underscore }}_{{ env }}"
       db_user: "{{ site | underscore }}"
     site_env: "{{ craft_env_defaults | combine(project.env | default({}), vault_craft_sites[site].env) }}"
+    project_local_path: "{{ (lookup('env', 'USER') == 'vagrant') | ternary(project_root + '/' + project_current_path, project.local_path) }}"
 
   pre_tasks:
     - name: Ensure site is valid
