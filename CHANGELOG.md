@@ -1,4 +1,10 @@
 ### HEAD
+* Allow for per-project packagist.com authentication ([#762](https://github.com/roots/trellis/pull/762))
+* Set multisite constants false while checking `wp core is-installed` ([#766](https://github.com/roots/trellis/pull/766))
+* Forward extra bin/deploy.sh parameters to ansible-playbook ([#748](https://github.com/roots/trellis/pull/748))
+* Update WP-CLI to 1.1.0 ([#759](https://github.com/roots/trellis/pull/759))
+* Add DOMAIN_CURRENT_SITE to default env variables ([#760](https://github.com/roots/trellis/pull/760))
+* Fix formatting of `set_fact` for `ansible_become_pass` ([#758](https://github.com/roots/trellis/pull/758))
 * Require Ansible 2.2.0.0 or greater ([#726](https://github.com/roots/trellis/pull/726))
 * [BREAKING] Use more secure sshd defaults ([#744](https://github.com/roots/trellis/pull/744))
 * Add basic git repo host keys to `known_hosts` ([#751](https://github.com/roots/trellis/pull/751))
