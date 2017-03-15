@@ -1,6 +1,24 @@
 disable_default_pool: true
 memcached_sessions: false
 
+php_extensions_default:
+  - php7.0-cli
+  - php7.0-common
+  - php7.0-curl
+  - php7.0-dev
+  - php7.0-fpm
+  - php7.0-gd
+  - php7.0-mbstring
+  - php7.0-mcrypt
+  - php7.0-mysql
+  - php7.0-opcache
+  - php7.0-xml
+  - php7.0-xmlrpc
+  - php7.0-zip
+
+php_extensions_custom: []
+php_extensions: "{{ php_extensions_default + php_extensions_custom }}"
+
 php_error_reporting: 'E_ALL & ~E_DEPRECATED & ~E_STRICT'
 php_display_errors: 'Off'
 php_display_startup_errors: 'Off'
