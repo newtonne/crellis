@@ -1,14 +1,9 @@
 ---
-- name: Validate Ansible version
+- name: Validate craft_sites
   fail:
-    msg: |
-      Your Ansible version is {{ ansible_version.full | default('unknown') }}.
-      Please install a version of Ansible that meets these requirements:
-      {% for item in ansible_requirements %}
-        {{ item.operator }} {{ item.version }}
-      {% endfor %}
-  when: ansible_version is not defined or false in [{% for item in ansible_requirements %}{{ ansible_version.full | version_compare(item.version, item.operator) }},{% endfor %}]
-  run_once: true
+    msg: "{{ lookup('template', 'craft_sites.j2') }}"
+  when: craft_sites.keys() | difference(vault_craft_sites.keys()) | count
+  tags: [craft]
 
 - name: Validate format of site_hosts
   fail:

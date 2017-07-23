@@ -1,0 +1,10 @@
+Invalid Craft sites configuration: site names in `craft_sites` must have matching entry in `vault_craft_sites`.
+
+Sites without a matching vault entry:
+{% for name in craft_sites.keys() | difference(vault_craft_sites.keys()) %}
+* `{{ name }}`
+{% endfor %}
+
+Update `group_vars/{{ env }}/vault.yml` to continue.
+
+Docs: https://roots.io/trellis/docs/wordpress-sites/#passwordssecrets
