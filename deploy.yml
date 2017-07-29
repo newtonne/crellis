@@ -11,7 +11,7 @@
   roles:
     - { role: connection, tags: [connection, always] }
 
-- name: Deploy WP site
+- name: Deploy Craft site
   hosts: web:&{{ env }}
   remote_user: "{{ web_user }}"
   pre_tasks:

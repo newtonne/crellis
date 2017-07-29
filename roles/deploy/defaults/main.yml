@@ -44,7 +44,7 @@ project_shared_children:
 # The project_environment is a list of environment variables that can be used in hooks
 # Example:
 # project_environment:
-#   WP_ENV: "production"
+#   CRAFT_ENV: "production"
 project_environment:
   CRAFT_ENV: "{{ env }}"
 
