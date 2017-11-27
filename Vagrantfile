@@ -5,6 +5,7 @@ ANSIBLE_PATH = __dir__ # absolute path to Ansible directory on host machine
 ANSIBLE_PATH_ON_VM = '/home/vagrant/trellis' # absolute path to Ansible directory on virtual machine
 
 require File.join(ANSIBLE_PATH, 'lib', 'trellis', 'vagrant')
+require File.join(ANSIBLE_PATH, 'lib', 'trellis', 'config')
 require 'yaml'
 
 vconfig = YAML.load_file("#{ANSIBLE_PATH}/vagrant.default.yml")
@@ -16,8 +17,7 @@ end
 
 ensure_plugins(vconfig.fetch('vagrant_plugins')) if vconfig.fetch('vagrant_install_plugins')
 
-craft_sites = load_craft_sites
-site_hosts = hosts(craft_sites)
+trellis_config = Trellis::Config.new(root_path: ANSIBLE_PATH)
 
 Vagrant.require_version '>= 1.8.5'
 
@@ -32,13 +32,29 @@ Vagrant.configure('2') do |config|
   config.ssh.shell = %{bash -c 'BASH_ENV=/etc/profile exec bash'}
 
   # Required for NFS to work
-  config.vm.network :private_network, ip: vconfig.fetch('vagrant_ip'), hostsupdater: 'skip'
+  if vconfig.fetch('vagrant_ip') == 'dhcp'
+    config.vm.network :private_network, type: 'dhcp', hostsupdater: 'skip'
 
-  main_hostname, *hostnames = site_hosts.map { |host| host['canonical'] }
+    cached_addresses = {}
+    config.hostmanager.ip_resolver = proc do |vm, _resolving_vm|
+      if cached_addresses[vm.name].nil?
+        if vm.communicate.ready?
+          vm.communicate.execute("hostname -I | cut -d ' ' -f 2") do |type, contents|
+            cached_addresses[vm.name] = contents.split("\n").first[/(\d+\.\d+\.\d+\.\d+)/, 1]
+          end
+        end
+      end
+      cached_addresses[vm.name]
+    end
+  else
+    config.vm.network :private_network, ip: vconfig.fetch('vagrant_ip'), hostsupdater: 'skip'
+  end
+
+  main_hostname, *hostnames = trellis_config.site_hosts_canonical
   config.vm.hostname = main_hostname
 
   if Vagrant.has_plugin?('vagrant-hostmanager')
-    redirects = site_hosts.flat_map { |host| host['redirects'] }.compact
+    redirects = trellis_config.site_hosts_redirects
 
     config.hostmanager.enabled = true
     config.hostmanager.manage_host = true
@@ -50,7 +66,7 @@ Vagrant.configure('2') do |config|
   bin_path = File.join(ANSIBLE_PATH_ON_VM, 'bin')
 
   if Vagrant::Util::Platform.windows? and !Vagrant.has_plugin? 'vagrant-winnfsd'
-    craft_sites.each_pair do |name, site|
+    trellis_config.craft_sites.each_pair do |name, site|
       config.vm.synced_folder local_site_path(site), remote_site_path(name, site), owner: 'vagrant', group: 'www-data', mount_options: ['dmode=776', 'fmode=775']
     end
 
@@ -60,7 +76,7 @@ Vagrant.configure('2') do |config|
     if !Vagrant.has_plugin? 'vagrant-bindfs'
       fail_with_message "vagrant-bindfs missing, please install the plugin with this command:\nvagrant plugin install vagrant-bindfs"
     else
-      craft_sites.each_pair do |name, site|
+      trellis_config.craft_sites.each_pair do |name, site|
         config.vm.synced_folder local_site_path(site), nfs_path(name), type: 'nfs'
         config.bindfs.bind_folder nfs_path(name), remote_site_path(name, site), u: 'vagrant', g: 'www-data', o: 'nonempty'
       end
@@ -87,11 +103,11 @@ Vagrant.configure('2') do |config|
     end
   end
 
-  provisioner = Vagrant::Util::Platform.windows? ? :ansible_local : :ansible
-  provisioning_path = Vagrant::Util::Platform.windows? ? ANSIBLE_PATH_ON_VM : ANSIBLE_PATH
+  provisioner = local_provisioning? ? :ansible_local : :ansible
+  provisioning_path = local_provisioning? ? ANSIBLE_PATH_ON_VM : ANSIBLE_PATH
 
   config.vm.provision provisioner do |ansible|
-    if Vagrant::Util::Platform.windows?
+    if local_provisioning?
       ansible.install_mode = 'pip'
       ansible.provisioning_path = provisioning_path
       ansible.version = vconfig.fetch('vagrant_ansible_version')
@@ -120,10 +136,11 @@ Vagrant.configure('2') do |config|
     vb.name = config.vm.hostname
     vb.customize ['modifyvm', :id, '--cpus', vconfig.fetch('vagrant_cpus')]
     vb.customize ['modifyvm', :id, '--memory', vconfig.fetch('vagrant_memory')]
+    vb.customize ['modifyvm', :id, '--ioapic', vconfig.fetch('vagrant_ioapic', 'on')]
 
     # Fix for slow external network connections
-    vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-    vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
+    vb.customize ['modifyvm', :id, '--natdnshostresolver1', vconfig.fetch('vagrant_natdnshostresolver', 'on')]
+    vb.customize ['modifyvm', :id, '--natdnsproxy1', vconfig.fetch('vagrant_natdnsproxy', 'on')]
   end
 
   # VMware Workstation/Fusion settings

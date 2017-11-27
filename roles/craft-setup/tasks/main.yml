@@ -1,8 +1,10 @@
 ---
-- include: database.yml
+- import_tasks: database.yml
   tags: craft-setup-database
-- include: self-signed-certificate.yml
+- import_tasks: self-signed-certificate.yml
   tags: craft-setup-self-signed-certificate
+- import_tasks: nginx-client-cert.yml
+  tags: craft-setup-nginx-client-cert
 
 - name: Create web root
   file:
@@ -34,8 +36,8 @@
   when: disable_default_pool | default(true)
   notify: reload php-fpm
 
-- include: nginx-includes.yml
+- import_tasks: nginx-includes.yml
   tags: [nginx-includes, craft-setup-nginx]
 
-- include: nginx.yml
+- import_tasks: nginx.yml
   tags: craft-setup-nginx

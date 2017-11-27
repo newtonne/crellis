@@ -2,22 +2,22 @@ disable_default_pool: true
 memcached_sessions: false
 
 php_extensions_default:
-  - php7.0-cli
-  - php7.0-common
-  - php7.0-curl
-  - php7.0-dev
-  - php7.0-fpm
-  - php7.0-gd
-  - php7.0-mbstring
-  - php7.0-mcrypt
-  - php7.0-mysql
-  - php7.0-opcache
-  - php7.0-xml
-  - php7.0-xmlrpc
-  - php7.0-zip
+  php7.0-cli: "{{ apt_package_state }}"
+  php7.0-common: "{{ apt_package_state }}"
+  php7.0-curl: "{{ apt_package_state }}"
+  php7.0-dev: "{{ apt_package_state }}"
+  php7.0-fpm: "{{ apt_package_state }}"
+  php7.0-gd: "{{ apt_package_state }}"
+  php7.0-mbstring: "{{ apt_package_state }}"
+  php7.0-mcrypt: "{{ apt_package_state }}"
+  php7.0-mysql: "{{ apt_package_state }}"
+  php7.0-opcache: "{{ apt_package_state }}"
+  php7.0-xml: "{{ apt_package_state }}"
+  php7.0-xmlrpc: "{{ apt_package_state }}"
+  php7.0-zip: "{{ apt_package_state }}"
 
-php_extensions_custom: []
-php_extensions: "{{ php_extensions_default + php_extensions_custom }}"
+php_extensions_custom: {}
+php_extensions: "{{ php_extensions_default | combine(php_extensions_custom) }}"
 
 php_error_reporting: 'E_ALL & ~E_DEPRECATED & ~E_STRICT'
 php_display_errors: 'Off'

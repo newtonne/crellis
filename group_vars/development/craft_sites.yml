@@ -5,10 +5,10 @@
 craft_sites:
   example.com:
     site_hosts:
-      - canonical: example.dev
+      - canonical: example.test
         redirects:
-          - www.example.dev
-    local_path: ../site # path targeting local Craft site directory (relative to Ansible root)
+          - www.example.test
+    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
     ssl:
       enabled: false
       provider: self-signed
