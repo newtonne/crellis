@@ -8,7 +8,7 @@ craft_sites:
       - canonical: example.test
         redirects:
           - www.example.test
-    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
+    local_path: ../site # path targeting local Craft site directory (relative to Ansible root)
     ssl:
       enabled: false
       provider: self-signed
