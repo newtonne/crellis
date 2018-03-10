@@ -1,4 +1,9 @@
 ### HEAD
+* Fix `raw_vars` feature to properly handle int values ([#959](https://github.com/roots/trellis/pull/959))
+* [BREAKING] Update Ansible default plugin paths in config files ([#958](https://github.com/roots/trellis/pull/958))
+* Add Nginx `ssl.no-default.conf` to drop requests for unknown hosts ([#888](https://github.com/roots/trellis/pull/888))
+* [BREAKING] Disable memcached UDP support by default ([#955](https://github.com/roots/trellis/pull/955))
+* Git: Ignore `vagrant.local.yml`([#953](https://github.com/roots/trellis/pull/953))
 * Update to PHP 7.2 ([#929](https://github.com/roots/trellis/pull/929))
 * Fix `failed_when` in `template_root` check with wp-cli 1.5.0 ([#948](https://github.com/roots/trellis/pull/948))
 * Bump Ansible `version_tested_max` to 2.4.3.0 ([#945](https://github.com/roots/trellis/pull/945))

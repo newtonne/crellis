@@ -10,3 +10,4 @@ site_hosts_redirects: "{{ item.value.site_hosts | selectattr('redirects', 'defin
 site_hosts: "{{ site_hosts_canonical | union(site_hosts_redirects) }}"
 ssl_enabled: "{{ item.value.ssl is defined and item.value.ssl.enabled | default(false) }}"
 ssl_stapling_enabled: "{{ item.value.ssl is defined and item.value.ssl.stapling_enabled | default(true) }}"
+sites_use_ssl: "{{ craft_sites.values() | map(attribute='ssl') | selectattr('enabled') | list | count > 0 }}"
