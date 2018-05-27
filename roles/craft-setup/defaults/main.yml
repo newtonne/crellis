@@ -29,6 +29,7 @@ hsts_preload: "{{ item.value.ssl.hsts_preload | default(nginx_hsts_preload) | te
 nginx_cache_duration: 30s
 nginx_skip_cache_uri: /admin/
 nginx_skip_cache_cookie: .+username$
+nginx_cache_background_update: "on"
 
 # Nginx includes
 nginx_includes_templates_path: nginx-includes
