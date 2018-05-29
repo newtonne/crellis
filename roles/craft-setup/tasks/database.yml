@@ -2,9 +2,9 @@
 - block:
   - name: Create databases for sites
     mysql_db:
-      name: "{{ site_env.db_name }}"
+      name: "{{ site_env.db_database }}"
       state: present
-      login_host: "{{ site_env.db_host }}"
+      login_host: "{{ site_env.db_server }}"
       login_user: "{{ mysql_root_user }}"
       login_password: "{{ mysql_root_password }}"
     with_dict: "{{ craft_sites }}"
@@ -15,9 +15,9 @@
       password: "{{ site_env.db_password }}"
       host: "{{ site_env.db_user_host }}"
       append_privs: no
-      priv: "{{ site_env.db_name }}.*:SELECT,INSERT,DELETE,UPDATE,CREATE,ALTER,INDEX,DROP,REFERENCES"
+      priv: "{{ site_env.db_database }}.*:SELECT,INSERT,DELETE,UPDATE,CREATE,ALTER,INDEX,DROP,REFERENCES,LOCK TABLES"
       state: present
-      login_host: "{{ site_env.db_host }}"
+      login_host: "{{ site_env.db_server }}"
       login_user: "{{ mysql_root_user }}"
       login_password: "{{ mysql_root_password }}"
     with_dict: "{{ craft_sites }}"

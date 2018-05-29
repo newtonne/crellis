@@ -2,7 +2,7 @@
 [![Release](https://img.shields.io/github/release/roots/trellis.svg?style=flat-square)](https://github.com/roots/trellis/releases)
 [![Build Status](https://img.shields.io/travis/newtonne/crellis.svg?style=flat-square)](https://travis-ci.org/newtonne/crellis)
 
-Ansible playbooks for setting up a LEMP stack for Craft. This is almost a direct port of [Trellis](https://github.com/roots/trellis), which does the same thing for WordPress.
+Ansible playbooks for setting up a LEMP stack for Craft 3. This is almost a direct port of [Trellis](https://github.com/roots/trellis), which does the same thing for WordPress.
 
 - Local development environment with Vagrant
 - High-performance production servers
@@ -42,10 +42,8 @@ The recommended directory structure for a Trellis project looks like:
 
 ```shell
 example.com/      # → Root folder for the project
-├── trellis/      # → Your clone of this repository
-└── site/         # → A Craft site
-    └── craft/
-        └── app/  # → Craft core (don't touch!)
+├── crellis/      # → Your clone of this repository
+└── site/         # → A Craft site ([Craft's directory structure](https://docs.craftcms.com/v3/directory-structure.html))
 ```
 
 See a complete working example in the [roots-example-project.com repo](https://github.com/roots/roots-example-project.com).

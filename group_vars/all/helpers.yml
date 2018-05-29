@@ -1,8 +1,13 @@
 craft_env_defaults:
-  db_host: localhost
-  db_name: "{{ item.key | underscore }}_{{ env }}"
+  db_server: localhost
+  db_database: "{{ item.key | underscore }}_{{ env }}"
   db_user: "{{ item.key | underscore }}"
   db_user_host: localhost
+  db_driver: mysql
+  db_port: 3306
+  db_table_prefix: craft
+  composer_home: "{{ composer_home_path }}"
+  environment: "{{ env }}"
 
 site_env: "{{ craft_env_defaults | combine(item.value.env | default({}), vault_craft_sites[item.key].env) }}"
 site_hosts_canonical: "{{ item.value.site_hosts | map(attribute='canonical') | list }}"

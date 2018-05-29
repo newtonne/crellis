@@ -13,3 +13,4 @@ vault_craft_sites:
   example.com:
     env:
       db_password: example_dbpassword
+      security_key: example_security_key

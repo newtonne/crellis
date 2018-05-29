@@ -17,5 +17,6 @@
     - { role: memcached, tags: [memcached] }
     - { role: nginx, tags: [nginx] }
     - { role: logrotate, tags: [logrotate] }
+    - { role: composer, tags: [composer] }
     - { role: craft-setup, tags: [craft, craft-setup] }
     - { role: craft-install, tags: [craft, craft-install] }

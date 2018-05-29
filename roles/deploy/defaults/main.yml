@@ -12,7 +12,7 @@ project_source_path: "{{ project_root }}/shared/source"
 # Examples: Composer's `vendor` folder, npm's `node_modules`.
 # These should not be part of project_shared_children since dependencies need to be atomic and tied to a deploy.
 project_copy_folders:
-  - craft/app
+  - vendor
 
 # All the templates to process on the remote system on deploy. These could contain config files.
 # `src` and `dest` paths work the same as project_local_files.
@@ -20,9 +20,6 @@ project_templates:
   - name: .env config
     src: roles/deploy/templates/env.j2
     dest: .env
-  - name: db config
-    src: roles/deploy/templates/db.php.j2
-    dest: craft/config/db.php
 
 # The shared_children is a list of all files/folders in your project that need to be linked to a path in `/shared`.
 # For example a sessions directory or an uploads folder. They are created if they don't exist, with the type
@@ -38,8 +35,8 @@ project_shared_children:
     src: backups
   - path: craft/storage/runtime
     src: runtime
-  - path: craft/storage/userphotos
-    src: userphotos
+  - path: web/assets
+    src: assets
 
 # The project_environment is a list of environment variables that can be used in hooks
 # Example:

@@ -15,3 +15,29 @@
   with_dict: "{{ craft_sites }}"
   register: env_file
   changed_when: env_file.stdout == item.key + '.env'
+
+- name: Add known_hosts
+  known_hosts:
+    name: "{{ item.name }}"
+    key: "{{ item.key | default(omit) }}"
+    path: "{{ item.path | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  become: no
+  with_items: "{{ known_hosts | default([]) }}"
+
+- name: Setup packagist.com authentication
+  composer:
+    command: config
+    arguments: --auth http-basic.repo.packagist.com token {{ item.value.packagist_token }}
+    working_dir: "{{ www_root }}/{{ item.key }}/{{ item.value.current_path | default('current') }}/"
+  no_log: true
+  when: item.value.packagist_token is defined
+  with_dict: "{{ craft_sites }}"
+
+- name: Install Dependencies with Composer
+  composer:
+    no_dev: no
+    optimize_autoloader: no
+    working_dir: "{{ www_root }}/{{ item.key }}/{{ item.value.current_path | default('current') }}/"
+  become: no
+  with_dict: "{{ craft_sites }}"

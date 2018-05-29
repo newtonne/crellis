@@ -36,5 +36,6 @@
     - { role: memcached, tags: [memcached] }
     - { role: nginx, tags: [nginx] }
     - { role: logrotate, tags: [logrotate] }
+    - { role: composer, tags: [composer] }
     - { role: letsencrypt, tags: [letsencrypt], when: sites_using_letsencrypt | count }
     - { role: craft-setup, tags: [craft, craft-setup, letsencrypt] }
