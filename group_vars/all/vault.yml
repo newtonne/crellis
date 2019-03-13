@@ -1,2 +1,8 @@
 # Documentation: https://roots.io/trellis/docs/vault/
 vault_mail_password: smtp_password
+
+# Variables to accompany `craft_env_defaults` in `group_vars/all/helpers.yml`
+# Note: These values can be overriden by `vault_craft_sites.*.env`
+#
+# vault_craft_env_defaults:
+#   my_api_key: 'available to all environments'

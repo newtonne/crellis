@@ -8,4 +8,4 @@ craft_env_defaults:
   composer_home: "{{ composer_home_path }}"
   environment: "{{ env }}"
 
-site_env: "{{ craft_env_defaults | combine(project.env | default({}), vault_craft_sites[site].env) }}"
+site_env: "{{ craft_env_defaults | combine(vault_craft_env_defaults | default({}), project.env | default({}), vault_craft_sites[site].env) }}"

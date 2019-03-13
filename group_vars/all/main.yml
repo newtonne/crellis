@@ -24,6 +24,7 @@ raw_vars:
   - vault_craft_sites
   - vault_users.*.password
   - vault_users.*.salt
+  - vault_craft_env_defaults
   - vault_craft_sites
 
 # Disable cross domain fonts so that control panel font requests are routed correctly
