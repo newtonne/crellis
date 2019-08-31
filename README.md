@@ -1,6 +1,6 @@
 # Crellis
 [![Release](https://img.shields.io/github/release/roots/trellis.svg?style=flat-square)](https://github.com/roots/trellis/releases)
-[![Build Status](https://img.shields.io/circleci/build/gh/newtonne/trellis?style=flat-square)](https://circleci.com/gh/newtonne/trellis)
+[![Build Status](https://img.shields.io/circleci/build/gh/newtonne/crellis?style=flat-square)](https://circleci.com/gh/newtonne/crellis)
 
 Ansible playbooks for setting up a LEMP stack for Craft 3. This is a fork of [Trellis](https://github.com/roots/trellis), which does the same thing for WordPress.
 
