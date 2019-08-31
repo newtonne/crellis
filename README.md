@@ -1,6 +1,6 @@
 # Crellis
 [![Release](https://img.shields.io/github/release/roots/trellis.svg?style=flat-square)](https://github.com/roots/trellis/releases)
-[![Build Status](https://img.shields.io/travis/newtonne/crellis.svg?style=flat-square)](https://travis-ci.org/newtonne/crellis)
+[![Build Status](https://img.shields.io/circleci/build/gh/newtonne/trellis?style=flat-square)](https://circleci.com/gh/newtonne/trellis)
 
 Ansible playbooks for setting up a LEMP stack for Craft 3. This is a fork of [Trellis](https://github.com/roots/trellis), which does the same thing for WordPress.
 
@@ -101,7 +101,7 @@ Contributions are welcome from everyone. We have [contributing guidelines](https
 
 Help support our open-source development efforts by [becoming a patron](https://www.patreon.com/rootsdev).
 
-<a href="https://kinsta.com/?kaid=OFDHAJIXUDIV"><img src="https://cdn.roots.io/app/uploads/kinsta.svg" alt="Kinsta" width="200" height="150"></a> <a href="https://www.harnessup.com/"><img src="https://cdn.roots.io/app/uploads/harness-software.svg" alt="Harness Software" width="200" height="150"></a> <a href="https://k-m.com/"><img src="https://cdn.roots.io/app/uploads/km-digital.svg" alt="KM Digital" width="200" height="150"></a> <a href="https://www.itineris.co.uk/"><img src="https://cdn.roots.io/app/uploads/itineris.svg" alt="itineris" width="200" height="150"></a> <a href="https://www.hebergeurweb.ca"><img src="https://cdn.roots.io/app/uploads/hebergeurweb.svg" alt="Hébergement Web Québec" width="200" height="150"></a>
+<a href="https://kinsta.com/?kaid=OFDHAJIXUDIV"><img src="https://cdn.roots.io/app/uploads/kinsta.svg" alt="Kinsta" width="200" height="150"></a> <a href="https://k-m.com/"><img src="https://cdn.roots.io/app/uploads/km-digital.svg" alt="KM Digital" width="200" height="150"></a>
 
 ## Community
 
