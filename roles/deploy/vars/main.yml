@@ -7,5 +7,7 @@ craft_env_defaults:
   db_table_prefix: craft
   composer_home: "{{ composer_home_path }}"
   environment: "{{ env }}"
+  git_sha: "{{ git_clone.after }}"
+  release_version: "{{ deploy_helper.new_release }}"
 
 site_env: "{{ craft_env_defaults | combine(vault_craft_env_defaults | default({}), project.env | default({}), vault_craft_sites[site].env) }}"
