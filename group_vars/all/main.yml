@@ -1,6 +1,4 @@
 composer_keep_updated: true
-composer_global_packages:
- - { name: hirak/prestissimo }
 composer_home_path: "{{ www_root }}/.composer"
 composer_home_owner: "{{ web_user }}"
 composer_home_group: "{{ web_group }}"
